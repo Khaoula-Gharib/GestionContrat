@@ -1,12 +1,10 @@
 package com.example.gestioncontrat.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class client {
+public class Client {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
@@ -15,6 +13,16 @@ public class client {
     private int NumTel;
     private int NumCompte;
     private String NumCin;
+    @OneToMany(mappedBy = "client")
+    private List<LigneClient> ligneClients;
+
+    public List<LigneClient> getLigneClients() {
+        return ligneClients;
+    }
+
+    public void setLigneClients(List<LigneClient> ligneClients) {
+        this.ligneClients = ligneClients;
+    }
 
     public Long getId() {
         return id;
@@ -74,7 +82,7 @@ public class client {
 
     @Override
     public String toString() {
-        return "client{" +
+        return "Client{" +
                 "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
@@ -82,6 +90,7 @@ public class client {
                 ", NumTel=" + NumTel +
                 ", NumCompte=" + NumCompte +
                 ", NumCin='" + NumCin + '\'' +
+                ", ligneClients=" + ligneClients +
                 '}';
     }
 }
