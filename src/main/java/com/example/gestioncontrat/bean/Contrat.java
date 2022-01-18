@@ -17,6 +17,8 @@ public class Contrat {
     private List<LigneProduit> ligneProduits;
     @ManyToOne(cascade = CascadeType.REMOVE)
     private Fournisseur fournisseur;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Client client;
 
     public Long getId() {
         return id;
@@ -59,6 +61,14 @@ public class Contrat {
         this.fournisseur = fournisseur;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     @Override
     public String toString() {
         return "Contrat{" +
@@ -67,6 +77,7 @@ public class Contrat {
                 ", description='" + description + '\'' +
                 ", ligneProduits=" + ligneProduits +
                 ", fournisseur=" + fournisseur +
+                ", client=" + client +
                 '}';
     }
 }
