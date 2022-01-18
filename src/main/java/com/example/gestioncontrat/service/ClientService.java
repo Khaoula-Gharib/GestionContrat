@@ -1,27 +1,27 @@
 package com.example.gestioncontrat.service;
 
-import com.example.gestioncontrat.bean.client;
-import com.example.gestioncontrat.dao.clientDao;
+import com.example.gestioncontrat.bean.Client;
+import com.example.gestioncontrat.dao.ClientDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class clientService {
+public class ClientService {
 
     @Autowired
-    private clientDao clientDao;
+    private ClientDao clientDao;
 
-    public List<client> findAll() {
+    public List<Client> findAll() {
         return clientDao.findAll();
     }
 
-    public client save(client entity) {
+    public Client save(Client entity) {
         return clientDao.save(entity);
     }
 
-    public client findById(Long aLong) {
+    public Client findById(Long aLong) {
         return clientDao.findById(aLong).get();
     }
 
@@ -35,8 +35,8 @@ public class clientService {
         clientDao.deleteAll();
     }
 
-    public client update(long id, client cl) {
-        client cl1=new client();
+    public Client update(long id, Client cl) {
+        Client cl1=new Client();
         cl1=this.findById(id);
         cl1.setNom(cl.getNom());
         cl1.setPrenom(cl.getPrenom());
