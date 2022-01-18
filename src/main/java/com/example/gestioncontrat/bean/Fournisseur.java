@@ -1,5 +1,8 @@
 package com.example.gestioncontrat.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -55,10 +58,12 @@ public class Fournisseur {
         this.numCompte = numCompte;
     }
 
+    @JsonIgnore
     public List<Contrat> getContrats() {
         return contrats;
     }
 
+    @JsonSetter
     public void setContrats(List<Contrat> contrats) {
         this.contrats = contrats;
     }
