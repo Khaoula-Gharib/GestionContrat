@@ -30,6 +30,7 @@ public class ContratService {
         contrat1.setDescription(contrat.getDescription());
         contrat1.setLigneProduits(contrat.getLigneProduits());
         contrat1.setFournisseur(contrat.getFournisseur());
+        contrat1.setClient(contrat.getClient());
         this.save(contrat1);
         return contrat1;
     }
