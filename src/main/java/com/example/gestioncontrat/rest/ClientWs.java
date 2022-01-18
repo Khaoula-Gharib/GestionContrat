@@ -1,7 +1,7 @@
 package com.example.gestioncontrat.rest;
 
-import com.example.gestioncontrat.bean.client;
-import com.example.gestioncontrat.service.clientService;
+import com.example.gestioncontrat.bean.Client;
+import com.example.gestioncontrat.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,24 +9,24 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/client")
-public class clientWs {
+public class ClientWs {
 
     @Autowired
-    private clientService clientService;
+    private ClientService clientService;
 
     @GetMapping("/")
-    public List<client> findAll() {
+    public List<Client> findAll() {
         return clientService.findAll();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public client save(@RequestBody client entity) {
+    public Client save(@RequestBody Client entity) {
         return clientService.save(entity);
     }
 
     @GetMapping("/id/{id}")
-    public client findById(@PathVariable("id") Long aLong) {
+    public Client findById(@PathVariable("id") Long aLong) {
         return clientService.findById(aLong);
     }
 
@@ -40,7 +40,7 @@ public class clientWs {
         clientService.deleteAll();
     }
     @PutMapping("/update/{id}")
-    public client update(@PathVariable long id, @RequestBody client cl) {
+    public Client update(@PathVariable long id, @RequestBody Client cl) {
         return clientService.update(id, cl);
     }
 }
