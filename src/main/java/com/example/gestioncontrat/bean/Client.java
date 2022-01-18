@@ -15,6 +15,16 @@ public class Client {
     private String NumCin;
     @OneToMany(mappedBy = "client")
     private List<LigneClient> ligneClients;
+    @OneToMany(mappedBy = "client")
+    private List<Contrat> contrats;
+
+    public List<Contrat> getContrats() {
+        return contrats;
+    }
+
+    public void setContrats(List<Contrat> contrats) {
+        this.contrats = contrats;
+    }
 
     public List<LigneClient> getLigneClients() {
         return ligneClients;
@@ -91,6 +101,7 @@ public class Client {
                 ", NumCompte=" + NumCompte +
                 ", NumCin='" + NumCin + '\'' +
                 ", ligneClients=" + ligneClients +
+                ", contrats=" + contrats +
                 '}';
     }
 }
