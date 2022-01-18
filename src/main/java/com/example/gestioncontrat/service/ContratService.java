@@ -29,6 +29,7 @@ public class ContratService {
         contrat1.setLibelle(contrat.getLibelle());
         contrat1.setDescription(contrat.getDescription());
         contrat1.setLigneProduits(contrat.getLigneProduits());
+        contrat1.setFournisseur(contrat.getFournisseur());
         this.save(contrat1);
         return contrat1;
     }
