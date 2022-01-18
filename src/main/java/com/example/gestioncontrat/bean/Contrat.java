@@ -12,6 +12,8 @@ public class Contrat {
     private String description;
     @OneToMany(mappedBy = "contrat")
     private List<LigneProduit> ligneProduits;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Fournisseur fournisseur;
 
     public Long getId() {
         return id;
@@ -45,6 +47,14 @@ public class Contrat {
         this.ligneProduits = ligneProduits;
     }
 
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
+
     @Override
     public String toString() {
         return "Contrat{" +
@@ -52,6 +62,7 @@ public class Contrat {
                 ", libelle='" + libelle + '\'' +
                 ", description='" + description + '\'' +
                 ", ligneProduits=" + ligneProduits +
+                ", fournisseur=" + fournisseur +
                 '}';
     }
 }
