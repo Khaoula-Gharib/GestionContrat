@@ -30,6 +30,7 @@ public class ProduitService {
         produit1.setDescription(produit.getDescription());
         produit1.setPrix(produit.getPrix());
         produit1.setLigneProduits(produit.getLigneProduits());
+        produit1.setDevis(produit.getDevis());
         this.save(produit1);
         return produit1;
     }

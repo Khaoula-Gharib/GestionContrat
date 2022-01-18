@@ -16,6 +16,8 @@ public class Produit {
     private Double prix;
     @OneToMany(mappedBy = "produit")
     private List<LigneProduit> ligneProduits;
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Devis devis;
 
     public Long getId() {
         return id;
@@ -59,6 +61,14 @@ public class Produit {
         this.ligneProduits = ligneProduits;
     }
 
+    public Devis getDevis() {
+        return devis;
+    }
+
+    public void setDevis(Devis devis) {
+        this.devis = devis;
+    }
+
     @Override
     public String toString() {
         return "Produit{" +
@@ -67,6 +77,7 @@ public class Produit {
                 ", description='" + description + '\'' +
                 ", prix=" + prix +
                 ", ligneProduits=" + ligneProduits +
+                ", devis=" + devis +
                 '}';
     }
 }
