@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("/api/fournisseur")
 public class FournisseurWs {
@@ -24,13 +24,13 @@ public class FournisseurWs {
     public Fournisseur findById(@PathVariable Long id) {return fournisseurService.findById(id);}
 
     @DeleteMapping("/id/{id}")
-    public void deleteById(@PathVariable Long id) {fournisseurService.deleteById(id);}
+    public void deleteById(@PathVariable("id") Long id) {fournisseurService.deleteById(id);}
 
     @DeleteMapping("/")
     public void delete(Fournisseur entity) { fournisseurService.delete(entity);}
 
-    @PutMapping("/update/{id}")
-    public Fournisseur update(@PathVariable long id, @RequestBody Fournisseur fournisseur) {
-        return fournisseurService.update(id, fournisseur);
+    @PutMapping("/update")
+    public Fournisseur update( @RequestBody Fournisseur fournisseur) {
+        return fournisseurService.update(fournisseur);
     }
 }

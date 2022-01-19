@@ -1,6 +1,7 @@
 package com.example.gestioncontrat.service;
 
 import com.example.gestioncontrat.bean.Contrat;
+import com.example.gestioncontrat.bean.LigneProduit;
 import com.example.gestioncontrat.dao.ContratDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,14 @@ public class ContratService {
 
     public void delete(Contrat entity) {contratDao.delete(entity);}
 
-    public Contrat update(Long id, Contrat contrat) {
-        Contrat contrat1 =new Contrat();
-        contrat1=this.findById(id);
-        contrat1.setLibelle(contrat.getLibelle());
-        contrat1.setDescription(contrat.getDescription());
-        contrat1.setLigneProduits(contrat.getLigneProduits());
-        contrat1.setFournisseur(contrat.getFournisseur());
-        contrat1.setClient(contrat.getClient());
-        this.save(contrat1);
-        return contrat1;
+    public Contrat update(Contrat contrat) {
+        Optional<Contrat> contrat1 = contratDao.findById(contrat.getId());
+        if(contrat1 == null || !contrat1.isPresent()) {
+            return null;
+        }
+        else {
+            contratDao.save(contrat);
+            return contrat;
+        }
     }
 }

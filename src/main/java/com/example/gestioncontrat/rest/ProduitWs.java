@@ -1,13 +1,14 @@
 package com.example.gestioncontrat.rest;
 
 import com.example.gestioncontrat.bean.Contrat;
+import com.example.gestioncontrat.bean.Fournisseur;
 import com.example.gestioncontrat.bean.Produit;
 import com.example.gestioncontrat.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("/api/produit")
 public class ProduitWs {
@@ -29,8 +30,9 @@ public class ProduitWs {
     @DeleteMapping("/")
     public void delete(Produit entity) { produitService.delete(entity);}
 
-    @PutMapping("/update/{id}")
-    public Produit update(@PathVariable long id, @RequestBody Produit produit) {
-        return produitService.update(id, produit);
+    @PutMapping("/update")
+    public Produit update(@RequestBody Produit produit) {
+        return produitService.update(produit);
     }
+
 }

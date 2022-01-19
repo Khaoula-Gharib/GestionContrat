@@ -1,5 +1,6 @@
 package com.example.gestioncontrat.service;
 
+import com.example.gestioncontrat.bean.Fournisseur;
 import com.example.gestioncontrat.bean.LigneProduit;
 import com.example.gestioncontrat.bean.Produit;
 import com.example.gestioncontrat.dao.LigneProduitDao;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LigneProduitService {
@@ -23,13 +25,14 @@ public class LigneProduitService {
 
     public void delete(LigneProduit entity) {ligneProduitDao.delete(entity);}
 
-    public LigneProduit update(Long id, LigneProduit ligneProduit) {
-        LigneProduit ligneProduit1 =new LigneProduit();
-        ligneProduit1=this.findById(id);
-        ligneProduit1.setQuantite(ligneProduit.getQuantite());
-        ligneProduit1.setProduit(ligneProduit.getProduit());
-        ligneProduit1.setContrat(ligneProduit.getContrat());
-        this.save(ligneProduit1);
-        return ligneProduit1;
+    public LigneProduit update(LigneProduit ligneProduit) {
+        Optional<LigneProduit> ligneProduit1 = ligneProduitDao.findById(ligneProduit.getId());
+        if(ligneProduit1 == null || !ligneProduit1.isPresent()) {
+            return null;
+        }
+        else {
+            ligneProduitDao.save(ligneProduit);
+            return ligneProduit;
+        }
     }
 }

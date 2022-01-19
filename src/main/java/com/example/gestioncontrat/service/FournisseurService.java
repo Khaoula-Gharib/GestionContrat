@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FournisseurService {
@@ -23,15 +24,14 @@ public class FournisseurService {
 
     public void delete(Fournisseur entity) {fournisseurDao.delete(entity);}
 
-    public Fournisseur update(Long id, Fournisseur fournisseur) {
-        Fournisseur fournisseur1 =new Fournisseur();
-        fournisseur1=this.findById(id);
-        fournisseur1.setNom(fournisseur.getNom());
-        fournisseur1.setAdresse(fournisseur.getAdresse());
-        fournisseur1.setNumTel(fournisseur.getNumTel());
-        fournisseur1.setNumCompte(fournisseur.getNumCompte());
-        fournisseur1.setContrats(fournisseur.getContrats());
-        this.save(fournisseur1);
-        return fournisseur1;
+    public Fournisseur update(Fournisseur fournisseur) {
+        Optional<Fournisseur> fournisseur1 = fournisseurDao.findById(fournisseur.getId());
+            if(fournisseur1 == null || !fournisseur1.isPresent()) {
+            return null;
+        }
+            else {
+            fournisseurDao.save(fournisseur);
+            return fournisseur;
+        }
     }
 }
