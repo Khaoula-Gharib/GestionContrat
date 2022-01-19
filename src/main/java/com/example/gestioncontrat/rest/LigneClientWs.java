@@ -1,12 +1,13 @@
 package com.example.gestioncontrat.rest;
 
+import com.example.gestioncontrat.bean.Contrat;
 import com.example.gestioncontrat.bean.LigneClient;
 import com.example.gestioncontrat.service.LigneClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("/api/LigneClient")
 public class LigneClientWs {
@@ -39,7 +40,8 @@ public class LigneClientWs {
     }
 
     @PutMapping("/update/{id}")
-    public LigneClient update(@PathVariable long id, @RequestBody LigneClient ligneClient) {
-        return ligneClientService.update(id, ligneClient);
+    public LigneClient update(@RequestBody LigneClient ligneClient) {
+        return ligneClientService.update(ligneClient);
     }
+
 }

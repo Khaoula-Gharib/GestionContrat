@@ -1,12 +1,13 @@
 package com.example.gestioncontrat.rest;
 
 import com.example.gestioncontrat.bean.Client;
+import com.example.gestioncontrat.bean.Contrat;
 import com.example.gestioncontrat.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("api/client")
 public class ClientWs {
@@ -40,7 +41,7 @@ public class ClientWs {
         clientService.deleteAll();
     }
     @PutMapping("/update/{id}")
-    public Client update(@PathVariable long id, @RequestBody Client cl) {
-        return clientService.update(id, cl);
+    public Client update(@RequestBody Client client) {
+        return clientService.update(client);
     }
 }
