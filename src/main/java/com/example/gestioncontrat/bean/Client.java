@@ -10,11 +10,21 @@ public class Client {
     private String nom;
     private String prenom;
     private String adresse;
-    private int NumTel;
-    private int NumCompte;
+    private Long NumTel;
+    private Long NumCompte;
     private String NumCin;
     @OneToMany(mappedBy = "client")
     private List<LigneClient> ligneClients;
+    @OneToMany(mappedBy = "client")
+    private List<Contrat> contrats;
+
+    public List<Contrat> getContrats() {
+        return contrats;
+    }
+
+    public void setContrats(List<Contrat> contrats) {
+        this.contrats = contrats;
+    }
 
     public List<LigneClient> getLigneClients() {
         return ligneClients;
@@ -56,19 +66,19 @@ public class Client {
         this.adresse = adresse;
     }
 
-    public int getNumTel() {
+    public Long getNumTel() {
         return NumTel;
     }
 
-    public void setNumTel(int numTel) {
+    public void setNumTel(Long numTel) {
         NumTel = numTel;
     }
 
-    public int getNumCompte() {
+    public Long getNumCompte() {
         return NumCompte;
     }
 
-    public void setNumCompte(int numCompte) {
+    public void setNumCompte(Long numCompte) {
         NumCompte = numCompte;
     }
 
@@ -91,6 +101,7 @@ public class Client {
                 ", NumCompte=" + NumCompte +
                 ", NumCin='" + NumCin + '\'' +
                 ", ligneClients=" + ligneClients +
+                ", contrats=" + contrats +
                 '}';
     }
 }

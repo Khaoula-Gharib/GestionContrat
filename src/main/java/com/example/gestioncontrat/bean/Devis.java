@@ -11,14 +11,15 @@ public class Devis {
    private Date dateDevis;
     @OneToMany(mappedBy = "devis")
     private List<LigneClient> ligneClients;
+    @OneToMany(mappedBy = "devis")
+    private List<Produit> produits;
 
-    @Override
-    public String toString() {
-        return "Devis{" +
-                "id=" + id +
-                ", dateDevis=" + dateDevis +
-                ", ligneClients=" + ligneClients +
-                '}';
+    public List<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(List<Produit> produits) {
+        this.produits = produits;
     }
 
     public Long getId() {
@@ -43,5 +44,15 @@ public class Devis {
 
     public void setLigneClients(List<LigneClient> ligneClients) {
         this.ligneClients = ligneClients;
+    }
+
+    @Override
+    public String toString() {
+        return "Devis{" +
+                "id=" + id +
+                ", dateDevis=" + dateDevis +
+                ", ligneClients=" + ligneClients +
+                ", produits=" + produits +
+                '}';
     }
 }

@@ -44,6 +44,8 @@ public class ClientService {
         cl1.setNumTel(cl.getNumTel());
         cl1.setNumCompte(cl.getNumCompte());
         cl1.setNumCin(cl.getNumCin());
+        cl1.setLigneClients(cl.getLigneClients());
+        cl1.setContrats(cl.getContrats());
         this.save(cl1);
         return cl1;
     }

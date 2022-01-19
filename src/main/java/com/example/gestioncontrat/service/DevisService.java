@@ -29,6 +29,7 @@ public class DevisService {
         devis1=this.findById(id);
         devis1.setDateDevis(devis.getDateDevis());
         devis1.setLigneClients(devis.getLigneClients());
+        devis1.setProduits(devis.getProduits());
         this.save(devis1);
         return devis1;
     }
