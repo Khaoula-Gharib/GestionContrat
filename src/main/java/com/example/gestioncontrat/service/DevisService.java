@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DevisService {
@@ -24,13 +25,14 @@ public class DevisService {
 
     public void delete(Devis entity) {devisDao.delete(entity);}
 
-    public Devis update(Long id, Devis devis) {
-        Devis devis1 =new Devis();
-        devis1=this.findById(id);
-        devis1.setDateDevis(devis.getDateDevis());
-        devis1.setLigneClients(devis.getLigneClients());
-        devis1.setProduits(devis.getProduits());
-        this.save(devis1);
-        return devis1;
+    public Devis update(Devis devis) {
+        Optional<Devis> devis1 = devisDao.findById(devis.getId());
+        if(devis1 == null || !devis1.isPresent()) {
+            return null;
+        }
+        else {
+            devisDao.save(devis);
+            return devis;
+        }
     }
 }

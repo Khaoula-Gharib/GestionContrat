@@ -35,13 +35,14 @@ public class LigneClientService {
         ligneClientDao.deleteAll();
     }
 
-    public LigneClient update(Long id, LigneClient ligneClient) {
-        LigneClient ligneClient1 =new LigneClient();
-        ligneClient1=this.findById(id);
-        ligneClient1.setQuantite(ligneClient.getQuantite());
-        ligneClient1.setClient(ligneClient.getClient());
-       // ligneProduit1.setContrat(ligneClient.getContrat());
-        this.save(ligneClient1);
-        return ligneClient1;
+    public LigneClient update(LigneClient ligneClient) {
+        Optional<LigneClient> ligneClient1 = ligneClientDao.findById(ligneClient.getId());
+        if(ligneClient1 == null || !ligneClient1.isPresent()) {
+            return null;
+        }
+        else {
+            ligneClientDao.save(ligneClient);
+            return ligneClient;
+        }
     }
 }
